@@ -1,4 +1,6 @@
-﻿namespace CoronaHomer.Models.Entities
+﻿using System.Collections.Generic;
+
+namespace CoronaHomer.Models.Entities
 {
 	public class Quest
 	{
@@ -9,5 +11,7 @@
 
 		public string Description { get; set; }
 		public int Score { get; set; }
+
+		public ICollection<UserQuest> CompletedBy { get; set; }
 	}
 }

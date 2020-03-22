@@ -1,11 +1,50 @@
-﻿@{
+﻿@model CoronaHomer.Models.Entities.Quest
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-
 @if (User.Identity.IsAuthenticated)
 {
-    <h2>Logged In!</h2>
+    if (ViewBag.NoMoreQuests)
+    {
+        <h1>
+            Glückwunsch, Du hast alle Aufgaben erledigt!
+        </h1>
+    }
+    else
+    {
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card text-center">
+                        <div class="card-header">
+                            Aufgabe
+                        </div>
+                        <div class="card-body">
+                            @Model.Description
+                        </div>
+                        <div class="card-footer text-muted">
+                            @Model.Score Solidaritätspunkte
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            
+            <form method="post" class="form-inline">
+                <a asp-controller="Home" asp-action="Index" class="btn btn-primary">Andere Aufgabe</a>
+                <input type="hidden" name="questId" value="@Model.Id" />
+                <button type="submit" class="btn btn-success">Erledigt!</button>
+            </form>
+        </div>
+    }
+
+    @section Scripts {
+        <script>
+            console.log("Hello World!");
+        </script>
+    }
 }
 else
 {
@@ -15,7 +54,7 @@ else
                 <h1>Corona-Homer</h1>
                 <p>Du hast Langeweile? Dann werde zu Corona-Homer und finde die beste Beschäftigung für ein entspanntes Leben in Quarantäne.</p>
             </div>
-            
+
             <div id="register" class="col col-12 space-top">
                 <h2>Registrierung</h2>
                 <p>
