@@ -5,10 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - CoronaHomer2</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="~/lib/fontawesome/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/utilities.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-    <header>
+    
+    <div class="container">
+        <div id="main-wrapper" class="row">
+            <nav id="main-nav">
+                <partial name="_NavigationMainPartial" />
+            </nav>
+            <div class="col col-1">
+                <div id="nav-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            <div id="user-profile" class="col col-6 offset-5 padding text-right">
+                <partial name="_ProfilePartial" />
+            </div>
+            <div class="col col-12 padding">
+                <main>
+                    @RenderBody()
+                </main>
+            </div>
+        </div>
+    </div>
+    
+
+
+    @*<header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">CoronaHomer2</a>
@@ -40,7 +69,7 @@
         <div class="container">
             &copy; 2020 - CoronaHomer2 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
-    </footer>
+    </footer>*@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

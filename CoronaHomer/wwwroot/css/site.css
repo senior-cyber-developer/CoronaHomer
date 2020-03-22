@@ -1,71 +1,213 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
-
-a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
-}
-
-/* Provide sufficient contrast against white background */
-a {
-  color: #0366d6;
-}
-
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
-}
-
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
-}
-
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  font-size: 14px;
-}
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.border-top {
-  border-top: 1px solid #e5e5e5;
-}
-.border-bottom {
-  border-bottom: 1px solid #e5e5e5;
-}
-
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
-}
-
-button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
-}
-
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  position: relative;
-  min-height: 100%;
-}
-
+﻿
+/*
+    =====================================
+        GENERAL SETTINGS
+    =====================================
+*/
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    background: url(../img/background.jpg) repeat center center fixed;
 }
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
+
+h1, h2, label, p, a, span {
+    text-shadow: none !important
+}
+
+h1 { font-size: 42pt; }
+h2 { font-size: 32pt; }
+
+label, p, a, span {
+    font-size: 16pt;
+    color: #212529;
+}
+
+a {
+    text-decoration: none !important;
+    font-weight: bold;
+}
+a:hover{
+    color: #f058a1;
+}
+
+/*
+    =====================================
+        GENERAL LAYOUT
+    =====================================
+*/
+#main-wrapper {
+    position: relative;
+    margin-top: 20vh;
+    background: #fee101;
+    border: 4px solid #000;
+}
+
+/* Main Nav */
+#main-nav {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 200px;
+    background: #f058a1;
+    z-index: -1;
+    opacity: 0;
+}
+#main-nav.open {
+    z-index: 1000;
+    opacity: 1;
+    animation: fadeInOpacity .25s ease-in;
+}
+#main-nav.close {
+    animation: fadeOutOpacity .25s ease-in;
+    z-index: 1000;
+}
+
+#main-nav-links {
+    margin-top: 54px;
+    padding: 0;
+}
+#main-nav-links {
+    background: #f058a1;
+}
+#main-nav-links .main-nav-link {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 76px;
+    padding: 20px 15px;
+    border-top: 4px solid #000 !important;
+    color: #000;
+    border-radius: 0;
+}
+#main-nav-links .main-nav-link:last-child {
+    border-bottom: 4px solid #000;
+}
+#main-nav-links .main-nav-link.active,
+#main-nav-links .main-nav-link:hover {
+    color: #fff;
+}
+
+/* User Profile */
+#user-profile span {
+    position: relative;
+    top: -2px;
+    font-size: 20pt;
+}
+#user-profile i {
+    font-size: 24pt;
+    margin-left: 10px;
+}
+#user-profile a:hover span, #user-profile a:hover i {
+    color: #f058a1;
+}
+/*
+    =====================================
+        NAV ICON
+    =====================================
+*/
+#nav-icon {
+    width: 65px;
+    height: 60px;
+    position: relative;
+    margin: 15px 0;
+    border: 3px solid #000;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: .5s ease-in-out;
+    -moz-transition: .5s ease-in-out;
+    -o-transition: .5s ease-in-out;
+    transition: .5s ease-in-out;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+#nav-icon:hover {
+    background: #f058a1;
+}
+
+#nav-icon:hover span, #nav-icon.open span {
+    background: #fff;
+}
+
+#nav-icon span {
+    display: block;
+    position: absolute;
+    height: 6px;
+    width: 40px;
+    background: #000;
+    opacity: 1;
+    left: 10px;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: .25s ease-in-out;
+    -moz-transition: .25s ease-in-out;
+    -o-transition: .25s ease-in-out;
+    transition: .25s ease-in-out;
+}
+
+#nav-icon span:nth-child(1) {
+    top: 10px;
+}
+
+#nav-icon span:nth-child(2), #nav-icon span:nth-child(3) {
+    top: 24px;
+}
+
+#nav-icon span:nth-child(4) {
+    top: 38px;
+}
+
+#nav-icon.open span:nth-child(1) {
+    top: 18px;
+    width: 0%;
+    left: 50%;
+}
+
+#nav-icon.open span:nth-child(2) {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+#nav-icon.open span:nth-child(3) {
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+#nav-icon.open span:nth-child(4) {
+    top: 18px;
+    width: 0%;
+    left: 50%;
+}
+
+/*
+    =====================================
+        ANIMATIONS
+    =====================================
+*/
+
+@keyframes fadeInOpacity {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOutOpacity {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
 }
