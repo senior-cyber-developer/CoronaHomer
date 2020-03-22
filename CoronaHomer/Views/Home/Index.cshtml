@@ -2,12 +2,26 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
 
 @if (User.Identity.IsAuthenticated)
 {
     <h2>Logged In!</h2>
+}
+else
+{
+    <content>
+        <div class="row">
+            <div class="col col-12">
+                <h1>Corona-Homer</h1>
+                <p>Du hast Langeweile? Dann werde zu Corona-Homer und finde die beste Beschäftigung für ein entspanntes Leben in Quarantäne.</p>
+            </div>
+            
+            <div id="register" class="col col-12 space-top">
+                <h2>Registrierung</h2>
+                <p>
+                    Du hast folgende Möglichkeiten zur Registrierung:
+                </p>
+            </div>
+        </div>
+    </content>
 }
