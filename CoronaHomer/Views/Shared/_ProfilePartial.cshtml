@@ -1,33 +1,14 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
+@using CoronaHomer.Models.Entities
 
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
 
-@{
-    string username = SignInManager.IsSignedIn(User) ? User.Identity.Name : "Login";
-}
-<a asp-area="Identity" asp-page="/Account/Manage/Index"><span>@username</span><i class="fas fa-user-circle fa-lg"></i></a>
-
-
-@*<ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
-    <li class="nav-item">
-        <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
-    </li>
-    <li class="nav-item">
-        <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-            <button  type="submit" class="nav-link btn btn-link text-dark">Logout</button>
-        </form>
-    </li>
+    <a asp-area="Identity" asp-page="/Account/Manage/Index"><span>@User.Identity.Name (Solidarität: @((await UserManager.GetUserAsync(User)).SolidarityScore))</span><i class="fas fa-user-circle fa-lg"></i></a>
 }
 else
 {
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
-    </li>
+    <a asp-area="Identity" asp-page="/Account/Manage/Index"><span>Login</span><i class="fas fa-user-circle fa-lg"></i></a>
 }
-</ul>*@

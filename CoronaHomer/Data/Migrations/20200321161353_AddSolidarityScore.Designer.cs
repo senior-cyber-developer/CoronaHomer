@@ -3,14 +3,16 @@ using System;
 using CoronaHomer.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CoronaHomer.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200321161353_AddSolidarityScore")]
+    partial class AddSolidarityScore
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -117,21 +119,6 @@ namespace CoronaHomer.Data.Migrations
                         .HasName("UserNameIndex");
 
                     b.ToTable("AspNetUsers");
-                });
-
-            modelBuilder.Entity("CoronaHomer.Models.Entities.UserQuest", b =>
-                {
-                    b.Property<string>("UserId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("QuestId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("UserId", "QuestId");
-
-                    b.HasIndex("QuestId");
-
-                    b.ToTable("UserQuest");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -271,21 +258,6 @@ namespace CoronaHomer.Data.Migrations
                     b.HasOne("CoronaHomer.Models.Entities.Category", "Category")
                         .WithMany("Quests")
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("CoronaHomer.Models.Entities.UserQuest", b =>
-                {
-                    b.HasOne("CoronaHomer.Models.Entities.Quest", "Quest")
-                        .WithMany("CompletedBy")
-                        .HasForeignKey("QuestId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("CoronaHomer.Models.Entities.User", "User")
-                        .WithMany("CompletedQuests")
-                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
